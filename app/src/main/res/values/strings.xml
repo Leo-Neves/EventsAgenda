@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Events Agenda</string>
+
+    <!-- User's list -->
+    <string name="refresh">Refresh</string>
+    <string name="events_list_title">Events</string>
+    <string name="out_of_leaderboard">Out of leaderboard</string>
+    <string name="leaderboard_position">Leaderboard position: %1$d</string>
+    <string name="best_language">Best language is %1$s with score %2$d</string>
+    <string name="zero_languages">No scoring languages</string>
+    <string name="no_events_found">No events found :(</string>
+    <string name="search_user">search user…</string>
+    <string name="order_by_rank">Order by rank</string>
+    <string name="error_network">Connection refused, try again later</string>
+    <string name="error_generic">Please try again later</string>
+    <string name="error_user">User \'%1$s\' not found</string>
+
+    <!-- Challenges -->
+    <string name="challenges">Challenges of %1$s</string>
+    <string name="authored">Authored</string>
+    <string name="completed">Completed</string>
+    <string name="out_of_rank">Out of rank</string>
+    <string name="rank_position">Rank position: %1$d</string>
+    <string name="no_tags">No tags for this challenge</string>
+    <string name="tags">Tags: %1$s</string>
+    <string name="no_languages">No languages for this challenge</string>
+    <string name="languages">Languages: %s</string>
+    <string name="no_languages_completed">Challenge was not completed</string>
+    <string name="languages_completed">Challenge was completed using %s</string>
+    <string name="try_again">Try again</string>
+    <string name="no_more_challenges">No more challenges to show</string>
+
+    <!-- Challenges details -->
+    <string name="slug_value">Slug: %s</string>
+    <string name="category_value">Category: %s</string>
+    <string name="published_value">Published at: %s</string>
+    <string name="approved_value">Approved at: %s</string>
+    <string name="languages_value">Languages: %s</string>
+    <string name="description_value">Description: %s</string>
+    <string name="attempts_value">Total attempts: %d</string>
+    <string name="completed_value">Total completed: %d</string>
+    <string name="stars_value">Stars: %d</string>
+    <string name="votes_value">Vote score: %d</string>
+    <string name="tags_value">Tags: %s</string>
+    <string name="issues_value">Unresolved issues: %d</string>
+    <string name="challenge_details">Challenge details</string>
+</resources>
