@@ -8,8 +8,7 @@ import androidx.lifecycle.Observer
 import com.santana.eventsagenda.databinding.ActivityDetailsBinding
 import com.santana.eventsagenda.R
 import com.santana.eventsagenda.domain.model.EventBO
-import com.santana.eventsagenda.state.StateResponse
-import com.santana.eventsagenda.state.StateResponse.*
+import com.santana.eventsagenda.state.EventResponse
 import com.santana.eventsagenda.utils.setVisibility
 import com.santana.eventsagenda.ui.EventsRouter.EVENT_SELECTED_ID
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,14 +44,22 @@ class EventDetailsActivity : AppCompatActivity() {
     }
 
     private fun setupObserver() {
-        val observer = Observer<StateResponse<EventBO>> { state ->
+        val observer = Observer<EventResponse<EventBO>> { state ->
             when (state) {
-                is StateLoading -> showLoading()
-                is StateSuccess -> {
+                is EventResponse.EventLoading -> showLoading()
+                is EventResponse.EventSuccess -> {
                     hideLoading()
                     populateEventDetails(state.data)
                 }
-                is GenericError -> {
+                is EventResponse.GenericError -> {
+                    hideLoading()
+                    showErrorMessage()
+                }
+                is EventResponse.ServerError -> {
+                    hideLoading()
+                    showErrorMessage()
+                }
+                is EventResponse.NetworkError -> {
                     hideLoading()
                     showErrorMessage()
                 }
