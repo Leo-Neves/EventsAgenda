@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/itemAuthored"
+        android:enabled="true"
+        android:icon="@drawable/ic_pencil"
+        android:title="@string/authored"/>
+    <item
+        android:id="@+id/itemCompleted"
+        android:enabled="true"
+        android:icon="@drawable/ic_done"
+        android:title="@string/completed"/>
+</menu>
