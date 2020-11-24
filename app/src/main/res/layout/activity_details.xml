@@ -146,6 +146,15 @@
         app:layout_constraintTop_toBottomOf="@id/tvUnresolvedIssues"
         tools:text="@string/description_value" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnCheckin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_done"
+            android:contentDescription="@string/do_checkin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

@@ -12,5 +12,5 @@ interface CodewarsApi {
     fun events(): Single<List<EventDTO>>
 
     @POST("api/checkin")
-    fun checkin(@Body checkinRequest: CheckinRequestDTO): Single<CheckinResponseDTO>
+    fun checkin(@Body checkinRequest: CheckinRequestDTO): Single<Any>
 }

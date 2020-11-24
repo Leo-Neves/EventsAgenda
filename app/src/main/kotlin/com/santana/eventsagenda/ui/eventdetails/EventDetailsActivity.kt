@@ -3,10 +3,13 @@ package com.santana.eventsagenda.ui.eventdetails
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.santana.eventsagenda.databinding.ActivityDetailsBinding
 import com.santana.eventsagenda.R
+import com.santana.eventsagenda.databinding.DialogCheckinBinding
+import com.santana.eventsagenda.domain.model.CheckinBO
 import com.santana.eventsagenda.domain.model.EventBO
 import com.santana.eventsagenda.state.EventResponse
 import com.santana.eventsagenda.utils.setVisibility
@@ -25,12 +28,26 @@ class EventDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setupViews()
-        setupObserver()
+        setupEventObserver()
+        setupCheckinObserver()
         viewModel.fetchEventDetails()
     }
 
     private fun setupViews() {
         showLoading()
+        openCheckinDialog()
+    }
+
+    private fun openCheckinDialog(){
+        binding.btnCheckin.setOnClickListener {
+            val view = DialogCheckinBinding.inflate(layoutInflater, null, false)
+            val dialog = AlertDialog.Builder(this).create()
+            dialog.setContentView(view.root)
+            dialog.show()
+            view.btnConfirmCheckin.setOnClickListener {
+                viewModel.checkinEvent(view.etName.text.toString(), view.etEmail.text.toString())
+            }
+        }
     }
 
     private fun showLoading() {
@@ -43,7 +60,7 @@ class EventDetailsActivity : AppCompatActivity() {
         binding.pbDetails.setVisibility(false)
     }
 
-    private fun setupObserver() {
+    private fun setupEventObserver() {
         val observer = Observer<EventResponse<EventBO>> { state ->
             when (state) {
                 is EventResponse.EventLoading -> showLoading()
@@ -67,6 +84,35 @@ class EventDetailsActivity : AppCompatActivity() {
         }
         viewModel.eventLiveData.observe(this, observer)
         viewModel.selectEvent(eventId)
+    }
+
+    private fun setupCheckinObserver() {
+        val observer = Observer<EventResponse<CheckinBO>> { state ->
+            when (state) {
+                is EventResponse.EventLoading -> showLoading()
+                is EventResponse.EventSuccess -> {
+                    hideLoading()
+                    showCheckinSuccessMessage()
+                }
+                is EventResponse.GenericError -> {
+                    hideLoading()
+                    showErrorMessage()
+                }
+                is EventResponse.ServerError -> {
+                    hideLoading()
+                    showErrorMessage()
+                }
+                is EventResponse.NetworkError -> {
+                    hideLoading()
+                    showErrorMessage()
+                }
+            }
+        }
+        viewModel.checkinLiveData.observe(this, observer)
+    }
+
+    private fun showCheckinSuccessMessage() {
+        Toast.makeText(this, R.string.checkin_done, Toast.LENGTH_LONG).show()
     }
 
     private fun populateEventDetails(eventDetails: EventBO) {

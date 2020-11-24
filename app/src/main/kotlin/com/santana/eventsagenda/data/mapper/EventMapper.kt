@@ -2,7 +2,7 @@ package com.santana.eventsagenda.data.mapper
 
 import com.santana.eventsagenda.data.model.EventDTO
 import com.santana.eventsagenda.domain.model.EventBO
-import java.util.*
+import java.util.Date
 
 fun EventDTO.toBO(): EventBO =
     EventBO(
@@ -11,8 +11,8 @@ fun EventDTO.toBO(): EventBO =
         imageUrl = image,
         latitude = latitude,
         longitude = longitude,
+        people = null,
         price = price,
         date = Date(date),
-        people = people,
         id = id
     )

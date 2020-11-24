@@ -6,7 +6,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class EventDTO(
-    @SerializedName("people") val people: List<String>?,
     @SerializedName("date") val date: Long,
     @SerializedName("description") val description: String,
     @SerializedName("title") val title: String,
