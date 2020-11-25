@@ -13,7 +13,6 @@ Neste desafio, deveria ser criado um aplicativo Android que acessa dados de uma 
 - Linguagem Kotlin
 - Suporte a API 19
 - Compilar com API 29
-- Permitir checkine compartilhamento de eventos
 - Tratamento de erros da API
 
 ## Desenvolvimento do projeto
@@ -60,7 +59,7 @@ Ao selecionar um evento o usuário é redirecionado para ver mais detalhes deste
 - Figuras para ilustrar as camadas da arquitetura do projeto.
 - Snackbars para substituir Toasts na comunicação com usuário.
 - Melhoria no layout do Dialog de checkin.
-- 
+
 ## Melhorias futuras
 - Testes com Espresso.
 - Identificar cidade do evento por latitude e longitude.
