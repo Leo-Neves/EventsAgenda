@@ -1,7 +1,7 @@
 package com.santana.eventsagenda.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.santana.eventsagenda.data.CodewarsRepositoryRobot.arrange
+import com.santana.eventsagenda.data.EventsRepositoryRobot.arrange
 import com.santana.eventsagenda.domain.model.EventBO
 import io.reactivex.Single
 import org.junit.Rule
@@ -13,26 +13,26 @@ class EventsRepositoryTest {
     val rule = InstantTaskExecutorRule()
 
     @Test
-    fun `when network is ok return list of users`(){
-        lateinit var single: Single<EventBO>
+    fun `when network is ok return list of events`(){
+        lateinit var response: Single<List<EventBO>>
         arrange{
             mockUserFromApi()
         } act {
-            single = getUsers()
+            response = getEvents()
         } assert {
-            success(single)
+            success(response)
         }
     }
 
     @Test
     fun `when network is off return throws an error`(){
-        lateinit var single: Single<EventBO>
+        lateinit var single: Single<List<EventBO>>
         arrange{
             mockNetworkError()
         } act {
-            single = getUsers()
+            single = getEvents()
         } assert {
-            error(single)
+            errorListingEvents(single)
         }
     }
 }

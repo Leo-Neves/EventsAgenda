@@ -41,6 +41,7 @@ Ao selecionar um evento o usuário é redirecionado para ver mais detalhes deste
 - **Hilt:** Hilt foi escolhido como injeção de dependência para facilitar a instância de dependências e possibilitar que testes sejam feitos mockando dependências.
 - **Multidex:** Uso obrigatório do multidex devido o aplicativo suportar API 19 do Android e possuir mais de 65k referências a métodos.
 - **Picasso:** Para baixar imagens dvia URL e exbil-as em ImageViews foi escolhido a biblioteca Picasso por ser simples de implementar, fazer o auto-redimensionamento das imagens, gerenciar cache e tratar erros de download das imagens. Algumas outras libs poderiam ser usadas para isso, como UniversalImageLoader (mais complexa de utilizar) e Fresco (possui código nativo C++ e necessita de split no .apk antes de subir na loja para diminuir o tamanho do app em MB).
+- **Mockk:** Utilizado nos testes unitários para mockar respostas de chamadas das funções.
 - **Swipe to refresh:** Facilitar a sincronização da lista de eventos fazendo um swipe no RecyclerView.
 - **ConstraintLayout:** Escolhido esse ViewGroup por ter alto poder de posicionar views na tela sem precisar aninhar com vários outros ViewGroups.
 - **CoordinatorLayout:** Este ViewGroup ajuda a definir comportamentos das Views em relação a outras views. Foi utilizado para facilitar o efeito parallax.
@@ -55,11 +56,11 @@ Ao selecionar um evento o usuário é redirecionado para ver mais detalhes deste
  - Nas chamadas de lista de eventos há um parâmetro do tipo Array chamado people que sempre possui o valor de array vazio. Como ele sempre está vazio e não trouxe vantagens para o app então este atributo foi ignorado no DTO.
 
 ## Em progresso
-- Testes unitários em construção.
 - Figuras para ilustrar as camadas da arquitetura do projeto.
 - Snackbars para substituir Toasts na comunicação com usuário.
 - Melhoria no layout do Dialog de checkin.
 
 ## Melhorias futuras
 - Testes com Espresso.
+- Aumentar cobertura dos testes unitários
 - Identificar cidade do evento por latitude e longitude.
