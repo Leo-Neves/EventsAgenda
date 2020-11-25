@@ -8,9 +8,9 @@ import com.santana.eventsagenda.domain.model.EventBO
 import com.santana.eventsagenda.domain.usecase.FetchEventsUseCase
 import com.santana.eventsagenda.state.EventResponse
 import com.santana.eventsagenda.state.EventResponse.*
+import com.santana.eventsagenda.state.mapErrorToState
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
-import retrofit2.HttpException
 
 class EventsViewModel @ViewModelInject constructor(
     private val listUseCase: FetchEventsUseCase,
@@ -26,14 +26,10 @@ class EventsViewModel @ViewModelInject constructor(
             .subscribeOn(scheduler)
             .doOnSubscribe {
                 _eventsLiveData.postValue(EventLoading())
-            }.subscribe({
-                _eventsLiveData.postValue(EventSuccess(it))
-            }, {
-                if (it is HttpException) {
-                    _eventsLiveData.postValue(NetworkError(it))
-                } else {
-                    _eventsLiveData.postValue(GenericError(it))
-                }
+            }.subscribe({ event->
+                _eventsLiveData.postValue(EventSuccess(event))
+            }, { error ->
+                _eventsLiveData.postValue(mapErrorToState(error))
             })
         disposables.add(disposable)
     }

@@ -1,8 +1,8 @@
 package com.santana.eventsagenda.di
 
-import com.santana.eventsagenda.data.CodewarsApi
-import com.santana.eventsagenda.data.repository.CodewarsRepositoryImpl
-import com.santana.eventsagenda.domain.repository.CodewarsRepository
+import com.santana.eventsagenda.data.EventsApi
+import com.santana.eventsagenda.data.repository.EventsRepositoryImpl
+import com.santana.eventsagenda.domain.repository.EventsRepository
 import com.santana.eventsagenda.domain.usecase.*
 import dagger.Module
 import dagger.Provides
@@ -48,30 +48,30 @@ object CodewarsModule {
 
     @Provides
     @Singleton
-    fun providesApi(retrofit: Retrofit): CodewarsApi = retrofit.create(CodewarsApi::class.java)
+    fun providesApi(retrofit: Retrofit): EventsApi = retrofit.create(EventsApi::class.java)
 
     @Provides
     @Singleton
     fun providesCodewarsRepository(
-        api: CodewarsApi
-    ): CodewarsRepository =
-        CodewarsRepositoryImpl(api)
+        api: EventsApi
+    ): EventsRepository =
+        EventsRepositoryImpl(api)
 
     @Provides
     fun providesScheduler() = Schedulers.io()
 
     @Provides
     @Singleton
-    fun providesFetchEventsUseCase(repository: CodewarsRepository) =
+    fun providesFetchEventsUseCase(repository: EventsRepository) =
         FetchEventsUseCase(repository)
 
     @Provides
     @Singleton
-    fun providesFetchEventDetailsUseCase(repository: CodewarsRepository) =
+    fun providesFetchEventDetailsUseCase(repository: EventsRepository) =
         FetchEventDetailsUseCase(repository)
 
     @Provides
     @Singleton
-    fun providesCheckinUseCase(repository: CodewarsRepository) =
+    fun providesCheckinUseCase(repository: EventsRepository) =
         CheckinUseCase(repository)
 }

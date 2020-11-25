@@ -1,16 +1,16 @@
 package com.santana.eventsagenda.data.repository
 
-import com.santana.eventsagenda.data.CodewarsApi
+import com.santana.eventsagenda.data.EventsApi
 import com.santana.eventsagenda.data.mapper.toBO
 import com.santana.eventsagenda.data.model.CheckinRequestDTO
-import com.santana.eventsagenda.data.model.CheckinResponseDTO
+import com.santana.eventsagenda.domain.model.CheckinBO
 import com.santana.eventsagenda.domain.model.EventBO
-import com.santana.eventsagenda.domain.repository.CodewarsRepository
+import com.santana.eventsagenda.domain.repository.EventsRepository
 import io.reactivex.Single
 
-class CodewarsRepositoryImpl(
-    private val api: CodewarsApi
-) : CodewarsRepository {
+class EventsRepositoryImpl(
+    private val api: EventsApi
+) : EventsRepository {
 
     override fun getEventInfo(eventId: String): Single<EventBO> {
         return api.event(eventId).map { it.toBO() }
@@ -24,7 +24,7 @@ class CodewarsRepositoryImpl(
         id: String,
         email: String,
         name: String
-    ): Single<CheckinResponseDTO> {
-        return api.checkin(CheckinRequestDTO(id, name, email))
+    ): Single<CheckinBO> {
+        return api.checkin(CheckinRequestDTO(id, name, email)).map { CheckinBO(id, name, email) }
     }
 }

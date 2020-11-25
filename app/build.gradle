@@ -10,11 +10,12 @@ android {
 
     defaultConfig {
         applicationId "com.santana.eventsagenda"
-        minSdkVersion 23
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     signingConfigs {
@@ -75,9 +76,9 @@ dependencies {
     implementation Deps.design.values()
     implementation Deps.networking.values()
     implementation Deps.dependencyInjection.values()
-    implementation Deps.database.values()
     implementation Deps.rxjava.values()
     implementation Deps.gson
+    implementation Deps.picasso
     kapt Deps.compilers.values()
     testImplementation Deps.unitTests.values()
     androidTestImplementation Deps.automatedTests.values()

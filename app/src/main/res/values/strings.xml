@@ -44,4 +44,11 @@
     <string name="tags_value">Tags: %s</string>
     <string name="issues_value">Unresolved issues: %d</string>
     <string name="challenge_details">Challenge details</string>
+    <string name="do_checkin">Do Checkin</string>
+    <string name="who_is_going_to_event">Who is going to this event?</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="confirm">Confirm</string>
+    <string name="checkin_done">Checkin done ;)</string>
+    <string name="fill_field">Obrigatory field</string>
 </resources>
