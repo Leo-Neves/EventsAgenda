@@ -43,4 +43,9 @@
     <string name="location_latitude">Latitude: %f</string>
     <string name="location_longitude">Longitude: %f</string>
     <string name="back">Back</string>
+    <string name="share_location_url">http://maps.google.com/maps?saddr=%1$f,%2$f</string>
+    <string name="share_event_text">Hey, come with me to event %1$s</string>
+    <string name="share_event_title">Share via</string>
+    <string name="share_location_button">Share location with latitude %1$f and longitude %2$f</string>
+    <string name="share_event">Share event</string>
 </resources>
