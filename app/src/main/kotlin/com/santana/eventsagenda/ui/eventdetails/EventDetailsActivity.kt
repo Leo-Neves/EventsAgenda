@@ -14,6 +14,8 @@ import com.santana.eventsagenda.domain.model.CheckinBO
 import com.santana.eventsagenda.domain.model.EventBO
 import com.santana.eventsagenda.state.EventResponse
 import com.santana.eventsagenda.ui.EventsRouter.EVENT_SELECTED_ID
+import com.santana.eventsagenda.ui.EventsRouter.shareEvent
+import com.santana.eventsagenda.ui.EventsRouter.shareLocation
 import com.santana.eventsagenda.utils.formatMonetary
 import com.santana.eventsagenda.utils.toDayMonthYear
 import com.squareup.picasso.Picasso
@@ -163,6 +165,15 @@ class EventDetailsActivity : AppCompatActivity() {
             tvLatitude.text = getString(R.string.location_latitude, event.latitude)
             tvLongitude.text = getString(R.string.location_longitude, event.longitude)
             tvDescription.text = event.description
+            contentLocation.contentDescription =
+                getString(R.string.share_location_button, event.latitude, event.longitude)
+            contentLocation.setOnClickListener {
+                shareLocation(this, event.latitude, event.longitude)
+            }
+            toolbar.setOnMenuItemClickListener {
+                shareLocation(this, event.latitude, event.longitude)
+                true
+            }
         }
     }
 

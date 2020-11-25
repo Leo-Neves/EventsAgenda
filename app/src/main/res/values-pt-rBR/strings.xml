@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Events Agenda</string>
+    <string name="refresh">Atualizar</string>
+    <string name="events_list_title">Eventos</string>
+    <string name="no_events_found">Nenhum evento encontrado :(</string>
+    <string name="error_network">Conexão negada, tenta mais tarde</string>
+    <string name="error_generic">Por favor tente novamente mais tarde</string>
+    <string name="events_details">Detalhes do evento</string>
+    <string name="do_checkin">Fazer Checkin</string>
+    <string name="who_is_going_to_event">Quem vai a este evento?</string>
+    <string name="name">Nome</string>
+    <string name="email">Email</string>
+    <string name="confirm">Confirmar</string>
+    <string name="checkin_done">Checkin feito ;)</string>
+    <string name="fill_field">Campo obrigatório</string>
+    <string name="price">Valor do ingresso</string>
+    <string name="description">Descrição</string>
+    <string name="date">Data</string>
+    <string name="location">Localização</string>
+    <string name="location_latitude">Latitude: %f</string>
+    <string name="location_longitude">Longitude: %f</string>
+    <string name="back">Voltar</string>
+    <string name="share_location_url">http://maps.google.com/maps?saddr=%1$f,%2$f</string>
+    <string name="share_event_text">Ei junte-se a mim no evento %1$s</string>
+    <string name="share_event_title">Compartilhar via</string>
+    <string name="share_location_button">Compartilhar localização de latitude %1$f e longitude %2$f</string>
+    <string name="share_event">Compartilhar evento</string>
+</resources>
