@@ -13,7 +13,7 @@ import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 
 class EventsViewModel @ViewModelInject constructor(
-    private val listUseCase: FetchEventsUseCase,
+    private val eventsUseCase: FetchEventsUseCase,
     private val scheduler: Scheduler
 ) : ViewModel() {
 
@@ -22,7 +22,7 @@ class EventsViewModel @ViewModelInject constructor(
     private val disposables = CompositeDisposable()
 
     fun listEvents() {
-        val disposable = listUseCase.execute()
+        val disposable = eventsUseCase.execute()
             .subscribeOn(scheduler)
             .doOnSubscribe {
                 _eventsLiveData.postValue(EventLoading())

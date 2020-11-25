@@ -1,33 +1,30 @@
 package com.santana.eventsagenda.data
 
 import android.accounts.NetworkErrorException
-import com.santana.eventsagenda.data.dao.UserDao
 import com.santana.eventsagenda.data.repository.EventsRepositoryImpl
 import com.santana.eventsagenda.domain.model.EventBO
-import com.santana.eventsagenda.factory.UserFactory.mockEvent
+import com.santana.eventsagenda.factory.EventFactory.mockEvents
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.Single
 
-object CodewarsRepositoryRobot {
+object EventsRepositoryRobot {
     private val api = mockk<EventsApi>()
-    private val userDao = mockk<UserDao>()
     private val subject = EventsRepositoryImpl(
-        api = api,
-        userDao = userDao
+        api = api
     )
 
     class CodewarsRepositoryArrange{
 
         fun mockUserFromApi(){
             every {
-                api.events(any())
-            } returns Single.just(mockEvent())
+                api.events()
+            } returns Single.just(mockEvents())
         }
 
         fun mockNetworkError(){
             every {
-                api.events(any())
+                api.events()
             } returns Single.error(NetworkErrorException())
         }
 
@@ -37,8 +34,8 @@ object CodewarsRepositoryRobot {
 
     class CodewarsRepositoryAct{
 
-        fun getUsers(): Single<EventBO> {
-            return subject.getEventInfo("jon")
+        fun getEvents(): Single<List<EventBO>> {
+            return subject.getEvents()
         }
 
         infix fun assert(func: CodewarsRepositoryAssert.() -> Unit){
@@ -48,14 +45,13 @@ object CodewarsRepositoryRobot {
 
     class CodewarsRepositoryAssert{
 
-        fun success(observer: Single<EventBO>){
+        fun success(observer: Single<List<EventBO>>){
             observer.test()
                 .assertComplete()
-                .assertValue { it.id.size == 3 }
-                .assertValue { it.title.score == 2000 }
+                .assertValue { it.size == 2 }
         }
 
-        fun error(observer: Single<EventBO>){
+        fun errorListingEvents(observer: Single<List<EventBO>>){
             observer.test()
                 .assertError(NetworkErrorException::class.java)
         }
