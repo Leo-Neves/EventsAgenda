@@ -2,9 +2,8 @@ package com.santana.eventsagenda.domain
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.santana.eventsagenda.domain.UserViewModelRobot.arrange
+import com.santana.eventsagenda.domain.EventsViewModelRobot.arrange
 import com.santana.eventsagenda.domain.model.EventBO
-import com.santana.eventsagenda.domain.usecase.CheckinUseCase
 import com.santana.eventsagenda.domain.usecase.FetchEventsUseCase
 import com.santana.eventsagenda.state.EventResponse
 import com.santana.eventsagenda.ui.eventlist.EventsViewModel
@@ -17,31 +16,30 @@ class EventsViewModelTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
-    private val usersUseCase = mockk<CheckinUseCase>()
-    private val listUseCase = mockk<FetchEventsUseCase>()
+    private val eventsUseCase = mockk<FetchEventsUseCase>()
     private val scheduler = mockk<Scheduler>()
     private val observer = mockk<Observer<EventResponse<List<EventBO>>>>()
-    private val viewModel = EventsViewModel(usersUseCase, listUseCase, scheduler)
+    private val viewModel = EventsViewModel(eventsUseCase, scheduler)
 
     @Test
-    fun `when fetch users should return user list`() {
+    fun `when fetch events should return events list`() {
         arrange {
-            fetchUsersSuccess(usersUseCase)
+            fetchEventsSuccess(eventsUseCase)
         } act {
-            observeUsers(viewModel, observer)
+            observeEvents(viewModel, observer)
         } assert {
-            successFetchUsers(observer)
+            successFetchEvents(observer)
         }
     }
 
     @Test
-    fun `when fetch users should return error`() {
+    fun `when fetch events should return error`() {
         arrange {
-            fetchUsersError(usersUseCase)
+            fetchEventsError(eventsUseCase)
         } act {
-            observeUsers(viewModel, observer)
+            observeEvents(viewModel, observer)
         } assert {
-            failedFetchUsers(observer)
+            failedFetchEvents(observer)
         }
     }
 

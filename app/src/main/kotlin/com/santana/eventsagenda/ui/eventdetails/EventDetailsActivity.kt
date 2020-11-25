@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.santana.eventsagenda.R
 import com.santana.eventsagenda.databinding.ActivityDetailsBinding
+import com.santana.eventsagenda.databinding.DialogCheckinBinding
 import com.santana.eventsagenda.domain.model.CheckinBO
 import com.santana.eventsagenda.domain.model.EventBO
 import com.santana.eventsagenda.state.EventResponse
@@ -61,18 +62,15 @@ class EventDetailsActivity : AppCompatActivity() {
 
     private fun openCheckinDialog() {
         binding.btnCheckin.setOnClickListener {
-            val view = layoutInflater.inflate(R.layout.dialog_checkin, null, false)
-            val etName = view.findViewById<EditText>(R.id.etName)
-            val etEmail = view.findViewById<EditText>(R.id.etEmail)
-            val btnConfirm = view.findViewById<Button>(R.id.btnConfirmCheckin)
+            val view = DialogCheckinBinding.inflate(layoutInflater)
             dialogCheckin = Dialog(this)
-            dialogCheckin.setContentView(view)
-            btnConfirm.setOnClickListener {
-                if (etName.text.isNotEmpty() && etEmail.text.isNotEmpty()) {
-                    viewModel.checkinEvent(etName?.text.toString(), etEmail?.text.toString())
+            dialogCheckin.setContentView(view.root)
+            view.btnConfirmCheckin.setOnClickListener {
+                if (view.etName.text.isNotEmpty() && view.etEmail.text.isNotEmpty()) {
+                    viewModel.checkinEvent(view.etName.text.toString(), view.etEmail.text.toString())
                 } else {
-                    if (etName.text.isEmpty()) etName.error = getString(R.string.fill_field)
-                    if (etEmail.text.isEmpty()) etEmail.error = getString(R.string.fill_field)
+                    if (view.etName.text.isEmpty()) view.etName.error = getString(R.string.fill_field)
+                    if (view.etEmail.text.isEmpty()) view.etEmail.error = getString(R.string.fill_field)
                 }
             }
             dialogCheckin.show()
