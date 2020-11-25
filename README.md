@@ -15,6 +15,10 @@ Neste desafio, deveria ser criado um aplicativo Android que acessa dados de uma 
 - Compilar com API 29
 - Tratamento de erros da API
 
+## Onde baixar
+
+[Download APK](https://github.com/Leo-Neves/EventsAgenda/releases/tag/v1.0)
+
 ## Desenvolvimento do projeto
 
 <img src="img/home.gif" width="200">
