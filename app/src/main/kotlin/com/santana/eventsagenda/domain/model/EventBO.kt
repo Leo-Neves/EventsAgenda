@@ -1,15 +1,8 @@
 package com.santana.eventsagenda.domain.model
 
-import android.os.Parcelable
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import kotlinx.android.parcel.Parcelize
-import java.util.*
+import java.util.Date
 
-@Entity
-@Parcelize
-class EventBO(
-    @PrimaryKey
+data class EventBO(
     val id: String,
     val title: String,
     val description: String,
@@ -19,5 +12,5 @@ class EventBO(
     val longitude: Double,
     val price: Double,
     val date: Date
-): Parcelable
+)
 
