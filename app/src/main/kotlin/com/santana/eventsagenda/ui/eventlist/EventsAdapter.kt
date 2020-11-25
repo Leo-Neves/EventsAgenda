@@ -58,7 +58,7 @@ class EventsAdapter(
             tvDate.text = event.date.toDayMonthYear()
             Picasso.get()
                 .load(event.imageUrl)
-                .centerCrop()
+                .fit()
                 .placeholder(R.drawable.bg_events)
                 .error(R.drawable.bg_events)
                 .into(ivImage)

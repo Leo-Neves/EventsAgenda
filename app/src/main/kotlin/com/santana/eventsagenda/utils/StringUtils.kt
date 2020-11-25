@@ -1,6 +1,8 @@
 package com.santana.eventsagenda.utils
 
 import android.content.Context
+import java.text.NumberFormat
+import java.util.*
 
 fun List<String>.splitStringList(
     context: Context,
@@ -15,4 +17,11 @@ fun List<String>.splitStringList(
             joinToString { it.capitalize() }
         )
     }
+}
+
+fun Double.formatMonetary(): String{
+    val format = NumberFormat.getCurrencyInstance()
+    format.maximumFractionDigits = 2
+    format.currency = Currency.getInstance("BRL")
+    return format.format(this)
 }
