@@ -171,7 +171,7 @@ class EventDetailsActivity : AppCompatActivity() {
                 shareLocation(this, event.latitude, event.longitude)
             }
             toolbar.setOnMenuItemClickListener {
-                shareEvent(this, event.title, event.latitude, event.longitude)
+                shareLocation(this, event.latitude, event.longitude)
                 true
             }
         }
