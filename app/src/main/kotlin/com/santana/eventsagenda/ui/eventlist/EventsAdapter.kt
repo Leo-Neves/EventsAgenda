@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.santana.eventsagenda.R
 import com.santana.eventsagenda.domain.model.EventBO
 import com.santana.eventsagenda.utils.toDayMonthYear
+import com.squareup.picasso.Picasso
 import kotlin.math.max
 
 class EventsAdapter(
@@ -55,6 +56,12 @@ class EventsAdapter(
         ) {
             tvTitle.text = event.title
             tvDate.text = event.date.toDayMonthYear()
+            Picasso.get()
+                .load(event.imageUrl)
+                .centerCrop()
+                .placeholder(R.drawable.bg_events)
+                .error(R.drawable.bg_events)
+                .into(ivImage)
             itemView.setOnClickListener { userClickListener.invoke(event) }
         }
     }

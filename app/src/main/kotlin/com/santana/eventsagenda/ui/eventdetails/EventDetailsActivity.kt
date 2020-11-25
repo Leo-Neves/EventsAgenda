@@ -1,20 +1,25 @@
 package com.santana.eventsagenda.ui.eventdetails
 
+import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.os.Handler
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.santana.eventsagenda.databinding.ActivityDetailsBinding
 import com.santana.eventsagenda.R
-import com.santana.eventsagenda.databinding.DialogCheckinBinding
 import com.santana.eventsagenda.domain.model.CheckinBO
 import com.santana.eventsagenda.domain.model.EventBO
 import com.santana.eventsagenda.state.EventResponse
 import com.santana.eventsagenda.utils.setVisibility
 import com.santana.eventsagenda.ui.EventsRouter.EVENT_SELECTED_ID
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+import kotlin.concurrent.schedule
 
 @AndroidEntryPoint
 class EventDetailsActivity : AppCompatActivity() {
@@ -23,6 +28,8 @@ class EventDetailsActivity : AppCompatActivity() {
     private val eventId by lazy { intent.getStringExtra(EVENT_SELECTED_ID) }
 
     private val binding by lazy { ActivityDetailsBinding.inflate(layoutInflater) }
+    private lateinit var dialogCheckin: Dialog
+    private var dialogLoading: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,26 +45,39 @@ class EventDetailsActivity : AppCompatActivity() {
         openCheckinDialog()
     }
 
-    private fun openCheckinDialog(){
+    private fun openCheckinDialog() {
         binding.btnCheckin.setOnClickListener {
-            val view = DialogCheckinBinding.inflate(layoutInflater, null, false)
-            val dialog = AlertDialog.Builder(this).create()
-            dialog.setContentView(view.root)
-            dialog.show()
-            view.btnConfirmCheckin.setOnClickListener {
-                viewModel.checkinEvent(view.etName.text.toString(), view.etEmail.text.toString())
+            val view = layoutInflater.inflate(R.layout.dialog_checkin, null, false)
+            val etName = view.findViewById<EditText>(R.id.etName)
+            val etEmail = view.findViewById<EditText>(R.id.etEmail)
+            val btnConfirm = view.findViewById<Button>(R.id.btnConfirmCheckin)
+            dialogCheckin = Dialog(this)
+            dialogCheckin.setContentView(view)
+            btnConfirm.setOnClickListener{
+                if (etName.text.isNotEmpty() && etEmail.text.isNotEmpty()){
+                    viewModel.checkinEvent(etName?.text.toString(), etEmail?.text.toString())
+                }else{
+                    if (etName.text.isEmpty()) etName.error = getString(R.string.fill_field)
+                    if (etEmail.text.isEmpty()) etEmail.error = getString(R.string.fill_field)
+                }
             }
+            dialogCheckin.show()
         }
     }
 
     private fun showLoading() {
-        binding.groupDetails.setVisibility(false)
-        binding.pbDetails.setVisibility(true)
+        if (dialogLoading==null || !dialogLoading!!.isShowing) {
+            dialogLoading = Dialog(this)
+            (dialogLoading as Dialog).setContentView(R.layout.dialog_loading)
+            (dialogLoading as Dialog).setCancelable(false)
+            (dialogLoading as Dialog).show()
+        }
     }
 
     private fun hideLoading() {
-        binding.groupDetails.setVisibility(true)
-        binding.pbDetails.setVisibility(false)
+        Timer().schedule(1000){
+            dialogLoading?.dismiss()
+        }
     }
 
     private fun setupEventObserver() {
@@ -91,6 +111,7 @@ class EventDetailsActivity : AppCompatActivity() {
             when (state) {
                 is EventResponse.EventLoading -> showLoading()
                 is EventResponse.EventSuccess -> {
+                    dialogCheckin.dismiss()
                     hideLoading()
                     showCheckinSuccessMessage()
                 }

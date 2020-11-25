@@ -14,24 +14,29 @@
         android:textSize="@dimen/fontSize_18"
         android:text="@string/who_is_going_to_event"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <EditText
         android:id="@+id/etName"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/size_0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_10"
         android:hint="@string/name"
         android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvCheckinTitle"/>
 
     <EditText
         android:id="@+id/etEmail"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/size_0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etName"/>
 
     <Button

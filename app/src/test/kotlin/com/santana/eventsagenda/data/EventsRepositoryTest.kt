@@ -7,7 +7,7 @@ import io.reactivex.Single
 import org.junit.Rule
 import org.junit.Test
 
-class CodewarsRepositoryTest {
+class EventsRepositoryTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()

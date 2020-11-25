@@ -78,6 +78,7 @@ dependencies {
     implementation Deps.dependencyInjection.values()
     implementation Deps.rxjava.values()
     implementation Deps.gson
+    implementation Deps.picasso
     kapt Deps.compilers.values()
     testImplementation Deps.unitTests.values()
     androidTestImplementation Deps.automatedTests.values()

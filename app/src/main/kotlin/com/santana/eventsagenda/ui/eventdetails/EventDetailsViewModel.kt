@@ -4,7 +4,6 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.santana.eventsagenda.data.model.CheckinResponseDTO
 import com.santana.eventsagenda.domain.model.CheckinBO
 import com.santana.eventsagenda.domain.model.EventBO
 import com.santana.eventsagenda.domain.usecase.CheckinUseCase

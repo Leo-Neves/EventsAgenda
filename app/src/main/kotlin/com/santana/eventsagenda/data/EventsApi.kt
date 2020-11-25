@@ -4,7 +4,7 @@ import com.santana.eventsagenda.data.model.*
 import io.reactivex.Single
 import retrofit2.http.*
 
-interface CodewarsApi {
+interface EventsApi {
     @GET("api/events/{eventId}")
     fun event(@Path("eventId") eventId: String): Single<EventDTO>
 

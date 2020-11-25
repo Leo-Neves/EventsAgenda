@@ -50,4 +50,5 @@
     <string name="email">Email</string>
     <string name="confirm">Confirm</string>
     <string name="checkin_done">Checkin done ;)</string>
+    <string name="fill_field">Obrigatory field</string>
 </resources>

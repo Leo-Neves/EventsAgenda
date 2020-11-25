@@ -41,6 +41,7 @@ class EventsActivity : AppCompatActivity() {
 
     private fun setupViews() {
         setupRecyclerView()
+        setupSwipeToRefresh()
         setupToolbar()
         viewModel.listEvents()
     }
@@ -48,6 +49,12 @@ class EventsActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         binding.rvUsers.setHasFixedSize(true)
         binding.rvUsers.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun setupSwipeToRefresh(){
+        binding.swipeLayout.setOnRefreshListener {
+            viewModel.listEvents()
+        }
     }
 
     private fun setupToolbar() {

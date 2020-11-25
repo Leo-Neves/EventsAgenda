@@ -2,7 +2,7 @@ package com.santana.eventsagenda.data
 
 import android.accounts.NetworkErrorException
 import com.santana.eventsagenda.data.dao.UserDao
-import com.santana.eventsagenda.data.repository.CodewarsRepositoryImpl
+import com.santana.eventsagenda.data.repository.EventsRepositoryImpl
 import com.santana.eventsagenda.domain.model.EventBO
 import com.santana.eventsagenda.factory.UserFactory.mockEvent
 import io.mockk.every
@@ -10,9 +10,9 @@ import io.mockk.mockk
 import io.reactivex.Single
 
 object CodewarsRepositoryRobot {
-    private val api = mockk<CodewarsApi>()
+    private val api = mockk<EventsApi>()
     private val userDao = mockk<UserDao>()
-    private val subject = CodewarsRepositoryImpl(
+    private val subject = EventsRepositoryImpl(
         api = api,
         userDao = userDao
     )
