@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Events Agenda</string>
 
-    <!-- User's list -->
+    <!-- Events list -->
     <string name="refresh">Refresh</string>
     <string name="events_list_title">Events</string>
     <string name="out_of_leaderboard">Out of leaderboard</string>
@@ -15,22 +15,7 @@
     <string name="error_generic">Please try again later</string>
     <string name="error_user">User \'%1$s\' not found</string>
 
-    <!-- Challenges -->
-    <string name="challenges">Challenges of %1$s</string>
-    <string name="authored">Authored</string>
-    <string name="completed">Completed</string>
-    <string name="out_of_rank">Out of rank</string>
-    <string name="rank_position">Rank position: %1$d</string>
-    <string name="no_tags">No tags for this challenge</string>
-    <string name="tags">Tags: %1$s</string>
-    <string name="no_languages">No languages for this challenge</string>
-    <string name="languages">Languages: %s</string>
-    <string name="no_languages_completed">Challenge was not completed</string>
-    <string name="languages_completed">Challenge was completed using %s</string>
-    <string name="try_again">Try again</string>
-    <string name="no_more_challenges">No more challenges to show</string>
-
-    <!-- Challenges details -->
+    <!-- Event details -->
     <string name="slug_value">Slug: %s</string>
     <string name="category_value">Category: %s</string>
     <string name="published_value">Published at: %s</string>
@@ -43,7 +28,7 @@
     <string name="votes_value">Vote score: %d</string>
     <string name="tags_value">Tags: %s</string>
     <string name="issues_value">Unresolved issues: %d</string>
-    <string name="challenge_details">Challenge details</string>
+    <string name="events_details">Event details</string>
     <string name="do_checkin">Do Checkin</string>
     <string name="who_is_going_to_event">Who is going to this event?</string>
     <string name="name">Name</string>
@@ -51,4 +36,11 @@
     <string name="confirm">Confirm</string>
     <string name="checkin_done">Checkin done ;)</string>
     <string name="fill_field">Obrigatory field</string>
+    <string name="price">Price</string>
+    <string name="description">Descriptition</string>
+    <string name="date">Date</string>
+    <string name="location">Location</string>
+    <string name="location_latitude">Latitude: %f</string>
+    <string name="location_longitude">Longitude: %f</string>
+    <string name="back">Back</string>
 </resources>
