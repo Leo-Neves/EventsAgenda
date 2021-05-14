@@ -1,70 +1,70 @@
-# Sicredi Code Challenge
+# Events Agenda
 
-## Diretório original
+## Challenge instructions repository
 
 https://github.com/WoopSicredi/jobs/issues/1
 
-## Resumo
+## Synopsis
 
-Neste desafio, deveria ser criado um aplicativo Android que acessa dados de uma api de eventos e mostre detalhes de todos os eventos.
+On this challenge an Android application should be created, accessing data from an API of events and showing details of all events retrieved.
 
-## Requisitos
+## Requirements
 
-- Linguagem Kotlin
-- Suporte a API 19
-- Compilar com API 29
-- Tratamento de erros da API
+- Kotlin as programming language
+- Support SDK 19
+- Compile with SDK 29
+- Handle API errors
 
-## Onde baixar
+## Download .apk?
 
-[Download APK](https://github.com/Leo-Neves/EventsAgenda/releases/tag/v1.0)
+[Download APK Link](https://github.com/Leo-Neves/EventsAgenda/releases/tag/v1.0)
 
-## Desenvolvimento do projeto
+## Project development
 
 <img src="img/home.gif" width="200">
 
-A primeira tela do app é a lista de eventos. É possível identificar eventos pelo nome, imagem e descrição. Quando a imagem não é encontrada é exibido um banner padrão para não deixar a tela em branco.
+ The first screen of the app is the event list. It is possible to identify events by name, image and description. When the image is not found, a standard image is displayed to not leave the screen blank.
 
 <img src="img/parallax.gif" width="200">
 
-Ao selecionar um evento o usuário é redirecionado para ver mais detalhes deste, como o preço do ingresso e texto de descrição.
+ When selecting an event the user is redirected to see more details of it, such as the ticket price and description text.
 
 <img src="img/share.gif" width="200">
 
- No cabeçário da tela o botão de compartilhar permite abrir a localização do evento em aplicativo de mapas ou de transporte.
+ At the Toolbar, the share button allows you to open the location of the event in a map or transport application.
 
  <img src="img/checkin.png" width="200">
 
- É possível fazer o checkin no evento marcando nome e email da pessoa que estará presente.
+ You can check in at the event by checking the name and email of the person who will be attending.
 
-## Tecnologias utilizadas
+## Frameworks and libraries
 
-- **Retrofit:** Para sincronização com a API foi escolhido o Retrofit por fazer automaticamente o parser da resposta JSON para objetos kotlin, além de possuir integração com RxJava.
-- **RxJava:** RxJava foi escolhido para escutar as respostas da API. Por ter um grande uso no mercado, vasta documentação e fácil integração com Retrofit esta tecnologia foi escolhida.
-- **Livedata:** Views escutam as respostas da API utilizando livedata. Sua vantagem é estar vinculado ao ciclo de vida do activity e ter seu observer removido sempre que o activity morre.
-- **Hilt:** Hilt foi escolhido como injeção de dependência para facilitar a instância de dependências e possibilitar que testes sejam feitos mockando dependências.
-- **Multidex:** Uso obrigatório do multidex devido o aplicativo suportar API 19 do Android e possuir mais de 65k referências a métodos.
-- **Picasso:** Para baixar imagens dvia URL e exbil-as em ImageViews foi escolhido a biblioteca Picasso por ser simples de implementar, fazer o auto-redimensionamento das imagens, gerenciar cache e tratar erros de download das imagens. Algumas outras libs poderiam ser usadas para isso, como UniversalImageLoader (mais complexa de utilizar) e Fresco (possui código nativo C++ e necessita de split no .apk antes de subir na loja para diminuir o tamanho do app em MB).
-- **Mockk:** Utilizado nos testes unitários para mockar respostas de chamadas das funções.
-- **Swipe to refresh:** Facilitar a sincronização da lista de eventos fazendo um swipe no RecyclerView.
-- **ConstraintLayout:** Escolhido esse ViewGroup por ter alto poder de posicionar views na tela sem precisar aninhar com vários outros ViewGroups.
-- **CoordinatorLayout:** Este ViewGroup ajuda a definir comportamentos das Views em relação a outras views. Foi utilizado para facilitar o efeito parallax.
-- **Internacionalização:** Os textos do aplicativo estão por padrão em inglês mas foram internacionalizados para também aparecerem em portugues (dependendo do idioma padrão do SO do usuário).
+- **Retrofit:** For synchronization with the API, Retrofit was chosen because it automatically parses the JSON response for kotlin objects when integrated with GSON, in addition to being integrated with RxJava.
+- **RxJava:** RxJava was chosen to listen to the API responses. Due to its great use in the market, extensive documentation and easy integration with Retrofit, this technology was chosen.
+- **Livedata:** Views listen to API responses using livedata. Its advantage is being linked to the activity's lifecycle and having its observer removed whenever the activity dies.
+- **Hilt:** Hilt was chosen as a dependency injection to facilitate the instance of dependencies and to allow tests to be made by mocking dependencies.
+- **Multidex:** Mandatory use of multidex because the application supports Android API 19 and has more than 65k method references.
+- **Picasso:** The Picasso library was chosen to download images through the URL and display them in ImageViews because it is simple to implement, auto-resize the images, manage the cache and handle errors in downloading the images. Some other libs could be used for this, such as UniversalImageLoader (more complex to use) and Fresco (has native C ++ code and needs to split in the .apk before going up in the store to decrease the size of the app in MB).
+- **Mockk:** Used in unit tests to mock function returns values.
+- **Swipe to refresh:** Make it easier to synchronize the event list by swiping the RecyclerView.
+- **ConstraintLayout:** This ViewGroup was chosen because it has high power to position views on the screen without having to nest with several other ViewGroups.
+- **CoordinatorLayout:** This ViewGroup helps to define the behaviors of Views in relation to other views. It was used to facilitate the parallax effect.
+- **Internacionalização:** The application texts are by default in English but have been internationalized to also appear in Portuguese (depending on the user's default OS language).
 
-## Arquitetura
-  Foi escolhido o padrão de arquitetura MVVM para este projeto. As classes Activity possuem as definições de view do projeto e mandam comandos para a camada ViewModel, que por sua vez respondem a View através de mudanças no estado de Livedatas. Os ViewModels fazem as chamadas na API através de UseCase, que são classes usadas para abstrair a interação com API para uma regra de negócio. Cada UseCase possui somente uma função que é chamar os Repositories que são quem de fato executa as requisições HTTP.
+## Architecture
+  The MVVM architecture pattern was chosen for this project. The Activity classes have the project's View layer definitions and send commands to the ViewModel layer, which responds to View through changes in the state of LiveDatas. ViewModels make calls to the API through UseCase, which are classes used to abstract the interaction with API for a business rule. Each UseCase has only one function, which is to call the Repository who are actually executing the HTTP requests and belongs to the Model layer.
 
-  Os objetos DTO e BO possuem os models que retornam do servidor para o usuário. Os DTOs são utilizadas pelo Repository para enviar/receber requisições. O DTO não pode ser manipulado pelos UseCases, ViewModels, Adapters ou Activities, para isso temos o BO. Após obtido um DTO este é convertido para BO (Business Object) através dos Mappers. BOs tem liberdade de possuir uma estrutura customizada em relação ao DTO e até funções para validação de dados que façam sentido nas Views.
+  DTO and BO objects have models that return from the server to the user. DTOs are used by the Repository to send / receive requests. The DTO cannot be manipulated by UseCases, ViewModels, Adapters or Activities, for this purpose we have the BO. After receiving a DTO it is converted to the BO (Business Object) through Mappers. BOs are free to have a customized structure in relation to the DTO and even functions for data validation that make sense in the Views.
 
-## Observações
- - Nas chamadas de lista de eventos há um parâmetro do tipo Array chamado people que sempre possui o valor de array vazio. Como ele sempre está vazio e não trouxe vantagens para o app então este atributo foi ignorado no DTO.
+## Comments
+ - In event list calls there is an Array parameter called people that always has an empty array value. As it is always empty and has no advantage for the app, this attribute was ignored in the DTO.
 
-## Em progresso
-- Figuras para ilustrar as camadas da arquitetura do projeto.
-- Snackbars para substituir Toasts na comunicação com usuário.
-- Melhoria no layout do Dialog de checkin.
+## In progress
+- Images to illustrate the layers of the project architecture in the README.
+- Snackbars to replace Toasts in communication with the user.
+- Improved layout of the checkin Dialog.
 
-## Melhorias futuras
-- Testes com Espresso.
-- Aumentar cobertura dos testes unitários
-- Identificar cidade do evento por latitude e longitude.
+## Future improvements
+- Tests with Espresso.
+- Increase coverage of unit tests
+- Identify the event's city by latitude and longitude using Google's Geocoding API.
